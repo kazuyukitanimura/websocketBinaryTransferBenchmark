@@ -1,0 +1,22 @@
+{
+  "author": "kazuyukitanimura <kazuyukitanimura@gmail.com>",
+  "name": "websocket.io-binaryTransferBenchmark",
+  "description": "benchmark the websocket.io binary file transfer performance",
+  "version": "0.0.1",
+  "private": true,
+  "repository": {
+    "url": ""
+  },
+  "main": "app.js",
+  "engines": {
+    "node": "~0.6.5"
+  },
+  "dependencies": {
+    "websocket.io": "https://github.com/LearnBoost/websocket.io/tarball/master",
+    "websocket": "1.0.2",
+    "socket.io-client": "https://github.com/kazuyukitanimura/socket.io-client/tarball/master",
+    "socket.io": "https://github.com/LearnBoost/socket.io/tarball/master"
+  },
+  "devDependencies": {}
+}
+
