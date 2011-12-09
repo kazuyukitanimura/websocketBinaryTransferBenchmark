@@ -27,8 +27,8 @@ io.configure(function() {
 });
 
 io.sockets.on('connection', function(socket) {
-  socket.on('upload', function(data) {
-    socket.emit('download', data);
+  socket.on('message', function(data) {
+    socket.send(data);
   });
 });
 
