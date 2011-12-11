@@ -14,8 +14,8 @@ var Protocol = process.argv[4] ? 'wss': 'ws' // the third argument
 /**
  * WevSocketClient connect
  */
-var ServerName = 'server.info';
-//var ServerName = 'localhost';
+//var ServerName = 'server.info';
+var ServerName = 'localhost';
 var PortN = 8082
 var WebSocketClient = require('websocket').client;
 var client = new WebSocketClient({
