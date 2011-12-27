@@ -26,6 +26,7 @@ var wsServer = new WebSocketServer({
   // 1GiB max frame size
   maxReceivedMessageSize: 0x40000000,
   // 1GiB max message size,
+  fragmentOutgoingMessages: false
 });
 
 wsServer.on('request', function(request) {
