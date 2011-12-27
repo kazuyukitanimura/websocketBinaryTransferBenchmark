@@ -53,7 +53,7 @@ ws.on('open', function() {
     crypto.randomBytes(size, function(ex, buf) {
       if (ex) throw ex;
       start = Date.now();
-      ws.send(buf);
+      ws.send(buf, {binary: true});
     });
   }
 

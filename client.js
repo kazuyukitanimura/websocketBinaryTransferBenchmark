@@ -20,7 +20,8 @@ var PortN = 8082
 var WebSocketClient = require('websocket').client;
 var client = new WebSocketClient({
   maxReceivedFrameSize: 0x40000000, // 1GiB max frame size
-  maxReceivedMessageSize: 0x40000000 // 1GiB max message size
+  maxReceivedMessageSize: 0x40000000, // 1GiB max message size
+  fragmentOutgoingMessages: false
 });
 client.connect(Protocol + '://' + ServerName + ':' + PortN);
 
