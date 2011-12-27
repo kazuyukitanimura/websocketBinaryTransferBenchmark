@@ -39,9 +39,9 @@ ws.on('open', function() {
 
       /**
        * Transfer ratio: Size(Bytes) / (ave(ms) / 2(roundtrip)) * 1000 = (Bytes per Second)
-       * (Bytes per Second) * 8 / 1024 = (kbps)
+       * (Bytes per Second) * 8 / 1024 / 1024= (Mbps)
        */
-      console.log('Transfer ratio: ' + (Size / ave * 2000).toFixed(1) + '[Bytes per Second] = ' + (Size / ave * 15.625).toFixed(1) + '[kbps]');
+      console.log('Transfer ratio: ' + (Size / ave * 2000).toFixed(1) + '[Bytes per Second] = ' + (Size / ave * 0.0152587890625).toFixed(1) + '[Mbps]');
       process.exit(0);
     }
   });
