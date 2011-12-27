@@ -30,12 +30,8 @@ Quick Start on localhost
     $ node ws-app.js&
     $ node ws-client.js 1048576 5
     $ killall node
-
     # the best benchmark result under the author's environment
-    $ node ws-app.js&
-    $ node client.js 1048576 5
-    $ killall node
-    # 1.3Gbps!!!
+    # over 2Gbps!!!
 
 Arguments
 =========
