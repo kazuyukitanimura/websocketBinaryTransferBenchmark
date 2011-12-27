@@ -24,7 +24,7 @@ var wsServer = new WebSocketServer({port:8082});
 
 wsServer.on('connection', function(connection) {
   connection.on('message', function(message) {
-    connection.send(message);
+    connection.send(message, {binary: true});
   });
 });
 
