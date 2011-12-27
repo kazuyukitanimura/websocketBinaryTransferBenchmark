@@ -1,4 +1,4 @@
-Binary Data Transfer Benchmark for [Socket.IO](https://github.com/learnboost/socket.io), [websockt.io](https://github.com/LearnBoost/websocket.io), and [WebSocket-Node](https://github.com/kazuyukitanimura/WebSocket-Node)
+Binary Data Transfer Benchmark for [Socket.IO](https://github.com/learnboost/socket.io), [websockt.io](https://github.com/LearnBoost/websocket.io), [WebSocket-Node](https://github.com/kazuyukitanimura/WebSocket-Node), and [ws](https://github.com/einaros/ws)
 =====
 This benchmark reports client -> server -> client binary data transfer latency on websocket and calculates the throughput (kbit per second).
 The binary data is randomly generated, and the websocket protocol is version 13.
@@ -26,13 +26,23 @@ Quick Start on localhost
     $ node client.js 1048576 5
     $ killall node
 
+    # ws benchmark
+    $ node ws-app.js&
+    $ node ws-client.js 1048576 5
+    $ killall node
+
+    # the best benchmark result under the author's environment
+    $ node ws-app.js&
+    $ node client.js 1048576 5
+    $ killall node
+    # 1.3Gbps!!!
 
 Arguments
 =========
 ### xxx-app.js [https=false]
 * If the first argument is given, xxx-app.js starts listening to https (and wss). If this option is on, xxx-app.js requires server.cert and server.key files.
 
-### client.js dataSize, numberOfMeasurement, [https=false]
+### xxx-client.js dataSize, numberOfMeasurement, [https=false]
 * The first argument is dataSize (Bytes) in decimal to send.
 * The second argument decides the number of Measurements for averaging (denominator of average).
 * If the third argument is given, client.js uses https (and wss).
@@ -44,3 +54,7 @@ In order to quickly calculate the dataSize, \`echo "2^20"|bc\` tricks can be use
      $ node client.js `echo "2^20"|bc` 5
 
 In order to run on a remote server, edit client.js and change the serverName.
+
+Note
+----
+For `ws` test, fragmentation is off.
