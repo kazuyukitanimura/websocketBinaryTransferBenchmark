@@ -54,6 +54,7 @@ In order to run on a remote server, edit client.js and change the serverName.
 Known Issue
 ----
 Mix-and-match tests between `WebSocket-Node` and `ws` does not work correctly for dataSize larger than `2^16`. For example, following command sequences fail
+
     # ws-server and WebSocket-Node-client combination
     $ node ws-app.js&
     $ node client.js `echo "2^16+1"|bc` 5 
