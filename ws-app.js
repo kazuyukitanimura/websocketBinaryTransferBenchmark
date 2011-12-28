@@ -17,10 +17,10 @@ if (Protocol === 'https') {
   };
 }
 
-//var app = require(Protocol).createServer((Protocol === 'https') ? options: undefined);
-//app.listen(8082);
+var app = require(Protocol).createServer((Protocol === 'https') ? options: undefined);
+app.listen(8082);
 
-var wsServer = new WebSocketServer({port:8082});
+var wsServer = new WebSocketServer({server: app});
 
 wsServer.on('connection', function(connection) {
   connection.on('message', function(message) {
