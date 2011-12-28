@@ -1,6 +1,6 @@
 Binary Data Transfer Benchmark for [Socket.IO](https://github.com/learnboost/socket.io), [websockt.io](https://github.com/LearnBoost/websocket.io), [WebSocket-Node](https://github.com/kazuyukitanimura/WebSocket-Node), and [ws](https://github.com/einaros/ws)
 =====
-This benchmark reports client -> server -> client binary data transfer latency on websocket and calculates the throughput (kbit per second).
+This benchmark reports client -> server -> client binary data transfer latency on websocket and calculates the throughput.
 The binary data is randomly generated, and the websocket protocol is version 13.
 
 Dependencies Install
@@ -51,6 +51,18 @@ In order to quickly calculate the dataSize, \`echo "2^20"|bc\` tricks can be use
 
 In order to run on a remote server, edit client.js and change the serverName.
 
-Note
+Known Issue
 ----
-For `ws` test, fragmentation is off.
+Mix-and-match tests between `WebSocket-Node` and `ws` does not work correctly for dataSize larger than `2^16`. For example, following command sequences fail
+    # ws-server and WebSocket-Node-client combination
+    $ node ws-app.js&
+    $ node client.js `echo "2^16+1"|bc` 5 
+    # nothing happens or Error message shows
+    $ killall node
+
+    # WebSocket-Node-server and ws-client combination
+    $ node websocket-node-app.js&
+    $ node ws-client.js `echo "2^16+1"|bc` 5 
+    # nothing happens or Error message shows
+    $ killall node
+If `fragmentOutgoingMessages: false` is set for the `WebSocket-Node` client or server, this problem does not occur; however, the benchmark measures non-fragmented WebSocket communication.

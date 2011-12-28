@@ -29,6 +29,7 @@ ws.on('open', function() {
    */
   ws.on('message', function(message) {
     var time = Date.now() - start;
+    //*console.log(message);
     console.log('Data size: ' + Size + ', roudtrip time: ' + time + ' ms');
     totalTime += time;
     if (--i) {
@@ -52,6 +53,7 @@ ws.on('open', function() {
   function uploadStart(size) {
     crypto.randomBytes(size, function(ex, buf) {
       if (ex) throw ex;
+      //*console.log(buf);
       start = Date.now();
       ws.send(buf, {binary: true});
     });

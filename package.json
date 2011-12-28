@@ -7,7 +7,6 @@
   "repository": {
     "url": ""
   },
-  "main": "app.js",
   "engines": {
     "node": "~0.6.6"
   },
@@ -16,7 +15,7 @@
     "websocket": "https://github.com/Worlize/WebSocket-Node/tarball/master",
     "socket.io-client": "https://github.com/kazuyukitanimura/socket.io-client/tarball/master",
     "socket.io": "https://github.com/LearnBoost/socket.io/tarball/master",
-    "ws": "https://github.com/einaros/ws/tarball/master"
+    "ws": "https://github.com/kazuyukitanimura/ws/tarball/master"
   },
   "devDependencies": {}
 }

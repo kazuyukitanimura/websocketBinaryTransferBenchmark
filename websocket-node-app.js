@@ -22,11 +22,7 @@ app.listen(8082);
 
 var wsServer = new WebSocketServer({
   httpServer: app,
-  maxReceivedFrameSize: 0x40000000,
-  // 1GiB max frame size
-  maxReceivedMessageSize: 0x40000000,
-  // 1GiB max message size,
-  fragmentOutgoingMessages: false
+  maxReceivedMessageSize: 0x40000000 // 1GiB max message size,
 });
 
 wsServer.on('request', function(request) {
