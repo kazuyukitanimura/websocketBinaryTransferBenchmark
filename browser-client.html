@@ -1,0 +1,65 @@
+<html>
+  <head></head>
+  <body></body>
+  <script type="text/javascript">
+    /**
+     * Initialization
+     */
+    var Size = 1048576; // 1GiB
+    var MaxIter = 20;
+    
+    /**
+     * WevSocketClient connect
+     */
+    //var ServerName = 'server.info';
+    var ServerName = 'localhost';
+    var PortN = 8082
+    var ws = new WebSocket('ws://' + ServerName + ':' + PortN);
+    ws.binaryType = 'arraybuffer';
+    
+    ws.onopen = function() {
+      var start = undefined;
+      var totalTime = 0;
+      var i = MaxIter;
+    
+      /**
+       * Download Event
+       */
+      ws.onmessage = function(message) {
+        var time = Date.now() - start;
+        //*console.log(message);
+        console.log('Data size: ' + Size + ', roudtrip time: ' + time + ' ms');
+        totalTime += time;
+        if (--i) {
+          uploadStart(Size);
+        } else {
+          var ave = totalTime / MaxIter;
+          console.log('Average roundtrip time: ' + ave + ' ms');
+    
+          /**
+           * Transfer ratio: Size(Bytes) / (ave(ms) / 2(roundtrip)) * 1000 = (Bytes per Second)
+           * (Bytes per Second) * 8 / 1024 / 1024= (Mbps)
+           */
+          console.log('Transfer ratio: ' + (Size / ave * 2000).toFixed(1) + '[Bytes per Second] = ' + (Size / ave * 0.0152587890625).toFixed(1) + '[Mbps]');
+        }
+      };
+    
+      /**
+       * Upload File
+       */
+      function uploadStart(size) {
+        var byteArray = new Uint8Array(size);
+        //for (var j = 0; j < size; j++) {
+        //  byteArray[j] = 0x55;
+        //}
+        var buf = byteArray.buffer;
+        //*console.log(buf);
+        start = Date.now();
+        ws.send(buf);
+      }
+    
+      uploadStart(Size);
+    };
+  </script>
+</html>
+
