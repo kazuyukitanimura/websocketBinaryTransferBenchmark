@@ -50,20 +50,3 @@ In order to quickly calculate the dataSize, \`echo "2^20"|bc\` tricks can be use
      $ node client.js `echo "2^20"|bc` 5
 
 In order to run on a remote server, edit client.js and change the serverName.
-
-Known Issue
-----
-Mix-and-match tests between `WebSocket-Node` and `ws` does not work correctly for dataSize larger than `2^16`. For example, following command sequences fail
-
-    # ws-server and WebSocket-Node-client combination
-    $ node ws-app.js&
-    $ node client.js `echo "2^16+1"|bc` 5 
-    # nothing happens or Error message shows
-    $ killall node
-
-    # WebSocket-Node-server and ws-client combination
-    $ node websocket-node-app.js&
-    $ node ws-client.js `echo "2^16+1"|bc` 5 
-    # nothing happens or Error message shows
-    $ killall node
-If `fragmentOutgoingMessages: false` is set for the `WebSocket-Node` client or server, this problem does not occur; however, the benchmark measures non-fragmented WebSocket communication.
